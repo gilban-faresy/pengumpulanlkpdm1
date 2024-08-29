@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+    <style>
+        #imageContainer {
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 5px solid red;
+        }
+
+        #imageContainer img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0; /* Default is square */
+        }
+
+        .circle {
+            border-radius: 50%;
+        }
+
+
+        .triangle {
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 200px solid red;
+        }
+
+        .triangle img {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="imageContainer">
+            <img src="image1.jpg" id="selectedImage" alt="Selected Image">
+        </div>
+        <div>
+            <label >Pilih Gambar:</label>
+            <select id="imageSelect">
+                <option value="ransel.jpeg">Gambar 1</option>
+                <option value="taspinggang.jpeg">Gambar 2</option>
+                <option value="slempang.jpeg">Gambar 3</option>
+            </select>
+
+            <label>Pilih Bentuk:</label>
+            <select id="shapeSelect">
+                <option value="square">Kotak</option>
+                <option value="circle">Lingkaran</option>
+                <option value="triangle">Segitiga</option>
+            </select>
+
+            <label>Pilih Warna Border:</label>
+            <select id="borderColorSelect">
+                <option value="red">Merah</option>
+                <option value="yellow">Kuning</option>
+                <option value="green">Hijau</option>
+            </select>
+
+            <button onclick="updateImage()">Kirim</button>
+        </div>
+    </div>
+
+    <script>
+        function updateImage() {
+            let imageSelect = document.getElementById('imageSelect').value;
+            let shapeSelect = document.getElementById('shapeSelect').value;
+            let borderColorSelect = document.getElementById('borderColorSelect').value;
+
+            let imageContainer = document.getElementById('imageContainer');
+            let selectedImage = document.getElementById('selectedImage');
+
+            selectedImage.src = imageSelect;
+
+            imageContainer.className = '';
+            selectedImage.style.display = 'block';
+
+            if (shapeSelect === 'triangle') {
+                imageContainer.className = 'triangle';
+                imageContainer.style.borderBottomColor = borderColorSelect;
+            } else {
+                imageContainer.className = shapeSelect;
+                imageContainer.style.borderColor = borderColorSelect;
+                selectedImage.style.borderRadius = shapeSelect === 'circle' ? '50%' : '0';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+        .btn-alert, .btn-stop {
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+            width: 200px;
+            height: 40px;
+        }
+
+        .alert-box {
+            height: 100px;
+            margin-bottom: 15px;
+            font-size: 20px;
+            display: block;
+        }
+        button{
+            border-radius: 10px;
+        }
+        .botton{
+            display: flex;
+            flex-direction: column;
+            margin-left: 2px;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="container">
+    <center>
+    <div id="alarmBox" class="alert-box">Hitung Mundur <br><br><span id="henti">10</span></div>
+</center>
+
+ <div class="botton">
+    <button class="btn-alert" onclick="showAlert()">Mulai</button>
+    <button class="btn-stop" onclick="stopCountdown()" disabled>Berhenti</button>
+</div>
+
+</div>
+<script>
+    let interval;
+    let countdown = 10;
+    
+    function showAlert() {
+        let alarmBox = document.getElementById('alarmBox');
+        let countdownElement = document.getElementById('henti');
+        let stopButton = document.querySelector('.btn-stop');
+
+        alarmBox.style.display = 'block';
+        stopButton.disabled = false;  
+
+        interval = setInterval(function() {
+            countdown--;
+            if (countdown > 0) {
+                countdownElement.textContent = countdown;
+            } else {
+                clearInterval(interval);
+                countdownElement.innerHTML  = "<h2 style='color:orange; font-size:20;'>Waktu Habis</h2>";
+                stopButton.disabled = true;
+                countdown = 10;
+            }
+        }, 1000);
+    }
+
+    function stopCountdown() {
+        clearInterval(interval);
+        document.querySelector('.btn-stop').disabled = true;
+    }
+</script>
+
+
+</body>
+</html>

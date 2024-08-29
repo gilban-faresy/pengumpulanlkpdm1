@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <select name="pilih" id="select_pilih" onchange="changeLabel(this)">
+        <option disabled selected>Perekomendasi</option>
+        <option value="Y">ada</option>
+        <option value="N">tidak</option>
+        </select>
+        <br>
+        <div id="name_wrapper">
+        <label for="">nama lengkap perekomendasi</label><br>
+        <input type="text" id="name" name="name">
+        <br>
+        <select name="kategori" id="selecet_kategori" onchange="changeTabel(this)">
+            <option disabled selected>Kategori Perekomendasi</option>
+            <option value="BRI">Pekerja BRI</option>
+            <option value="BKT">Purnabakti</option>
+        </select><br>
+        <label for="">Nomor ID Pegawai/KTA/PN/MP</label><br>
+        <input type="text" id="name" name="name">
+        <br>
+        <div id="name_jabatan">
+        <label for="">Jabatan Perekomendasi</label><br>
+        <input type="text" id="name" name="name">
+    </div>
+    </div>
+    </form>
+    <script>
+        function changeLabel(e){
+            let nameWrapper = document.getElementById("name_wrapper");
+            if (e.value == "Y"){
+                nameWrapper.style.display = "block";
+            }else{
+                nameWrapper.style.display = "none";
+            }
+        }
+        function changeTabel(e){
+            let nameJabatan = document.getElementById("name_jabatan");
+            if (e.value == "BRI"){
+                nameJabatan.style.display = "block";
+            }else{
+                nameJabatan.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
